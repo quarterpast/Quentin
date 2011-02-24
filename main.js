@@ -7,6 +7,26 @@ Object.extend = function(d,s) {
 Object.isString = function(object) {
 	return Object.prototype.toString.call(object) === '[object String]';
 };
+Object.isArray = function(object) {
+	return Object.prototype.toString.call(object) === '[object Array]';
+};
+String.prototype.parseQuery = function() {
+	var t = this.replace(/^.*?\?/,'').split('&'), r = {};
+	t.forEach(function(p) {
+		var k = p.substr(0,p.indexOf('=')).replace(/\[\]$/,''),
+		v = p.substr(p.indexOf('=')+1).replace(/\+/g,' ');
+		if(k in r) {
+			if(Object.isArray(r[k])) {
+				r[k].push(v);
+			} else {
+				r[k] = [r[k],v];
+			}
+		} else {
+			r[k] = v;
+		}
+	});
+	return r;
+}
 $ = {
 	foreach: function(min, max, arr, h, lev) {
 		var k, ret=<></>, it = 1;
@@ -58,9 +78,21 @@ Quentin = {
 	options: {
 		"template": "templates.js"
 	},
+	error: {
+		
+	},
 	init: function(p) {
 		o && Quentin.options.extend(o);
-		
+		var t = Quentin.options.template, c, o;
+		if(Object.isString(t)) {
+			try {
+				c = read(t);
+				evalcx(t,o);
+				Quentin.walk(o.template || error);
+			} catch(e) {
+				throw e;
+			}
+		}
 	},
 	template: function(m,path) {
 		var env = {
@@ -93,5 +125,3 @@ function news(data,path) {
 }
 
 
-var t = Quentin.template(news);
-t.print({title: "test",timestamp: 1234567890,content: "Testing Quentin!",tags:["test","quentin"]});

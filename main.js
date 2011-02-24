@@ -26,7 +26,10 @@ String.prototype.parseQuery = function() {
 		}
 	});
 	return r;
-}
+};
+JSON.load = function(p) {
+	return JSON.parse(read(p));
+};
 $ = {
 	foreach: function(min, max, arr, h, lev) {
 		var k, ret=<></>, it = 1;
@@ -88,10 +91,28 @@ Quentin = {
 			try {
 				c = read(t);
 				evalcx(t,o);
-				Quentin.walk(o.template || error);
+				Quentin.go(p, o.template || error);
 			} catch(e) {
 				throw e;
 			}
+		}
+	},
+	go: function(p,o) {
+		var args, r;
+		p.forEach(function(a,i) {
+			if(Object.isUndefined(o[a])) {
+				args=p.slice(i);
+				throw $break;
+			} else {
+				o = o[a];
+			}
+		});
+		if(typeof o === 'function') {
+			r = Quentin.template(
+		} else if(typeof f['index'] === 'function') {
+			o=f['index'].apply(null,args);
+		} else {
+			o=c;
 		}
 	},
 	template: function(m,path) {
@@ -99,7 +120,7 @@ Quentin = {
 			options: Quentin.options,
 			now: function() new Date(),
 			get: environment.QUERY_STRING && environment.QUERY_STRING.parseQuery(),
-			post: {},//TODO: find out where I can get this
+			post: {},//TODO: find out where/if I can get this
 			server: environment
 		},
 		out = function(d) {

@@ -4,6 +4,9 @@ Object.extend = function(d,s) {
 	}
 	return d;
 };
+Object.isString = function(object) {
+	return Object.prototype.toString.call(object) === '[object String]';
+};
 $ = {
 	foreach: function(min, max, arr, h, lev) {
 		var k, ret=<></>, it = 1;

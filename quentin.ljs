@@ -88,27 +88,9 @@ Quentin = {
 	error: {
 		
 	},
-	init: function() {
-		var t = Quentin.options.template, c, o;
-		print("Content-type: text/html\n");
-		if(Object.isString(t)) {
-			try {
-				c = read(t);
-				evalcx(t,o);
-				Quentin._template = o.template;
-			} catch(e) {
-				throw e;
-			}
-		} else {
-			try {
-				Quentin._template = Quentin.options.template;
-			} catch(e) {
-				
-			}
-		}
-	},
 	go: function(p) {
-		var args, r, o = Quentin._template;
+		var args, r, o = Quentin.template;
+		print("Content-type: text/html\n");
 		for each(let [i,a] in Iterator(p)) {
 			if(Object.isUndefined(o[a])) {
 				args = p.slice(i);
@@ -138,7 +120,7 @@ Quentin = {
 			return m.apply(Quentin.env,[d,path]);
 		},
 		p = function(d) {
-			print(out(d));
+			print(out(d).toXMLString());
 		};
 		return {
 			out: out,
@@ -146,14 +128,4 @@ Quentin = {
 		};
 	}	
 };
-
-function news(data,path) {
-	var x = <article class="news">
-			<header><h1>{data.title}</h1><time>{data.timestamp}</time></header>
-			{$.foreach(data.tags,function(t) <tag>{t}</tag>)}
-			{data.content}
-			</article>
-	return x.toXMLString();
-}
-
 

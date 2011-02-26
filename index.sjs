@@ -1,5 +1,7 @@
+#!home/photosoc/bin/js
 load("quentin.js");
-var p = arguments[0].parseQuery().page.split('/');
+print("Content-type: text-html")
+var p = environment.PATH_INFO.split('/').filter(function(a) a);
 Quentin.options.template = {
 	"home": {
 		"index": i = function() "Welcome to Warwick PhotoSoc!",

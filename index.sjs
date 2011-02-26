@@ -1,7 +1,7 @@
 #!/home/photosoc/bin/js
 load("quentin.ljs");
-var p = Quentin.env.path || ["home"];
-Quentin.options.template = {
+var p = Quentin.env.path || ["index"];
+Quentin.template = {
 	"home": {
 		"index": i = function() "Welcome to Warwick PhotoSoc!",
 		"news": function(d) {
@@ -12,5 +12,4 @@ Quentin.options.template = {
 	},
 	"index": i
 };
-Quentin.init();
 Quentin.go(p).print(JSON.load('data.json'));

@@ -1,6 +1,695 @@
 {
-	"news":[
-		{"title":"test!"},
-		{"title":"second"}
-	]
+	"events": [
+	{
+		"title": "Elections",
+	    "description": "Time for the old regime to step down and a new era to be ushered in. Afterwards we'll be reminiscing over the year with a meal at 'Spoons.",
+	    "tags": ["Photo Week","spoons"],
+	    "location": "52.380923,-1.562961|S0.19",
+	    "timestamp": 1297357200,
+	    "endtime": 1297362600
+	},
+	{
+	    "title": "Compact Camera Training",
+	    "description": "You don't have to spend £500 on a camera to get great results, as Jamie will show you in this training session.",
+	    "tags": ["Photo Week","training","digital","compact"],
+	    "location": "52.380923,-1.562961|S0.21",
+	    "timestamp": 1297278000,
+	    "endtime": 1297105200 
+	},
+	{
+	    "title": "Post-processing Workshop",
+	    "description": "Equipment Manager Josh will be showing you how to organise your workflow, and the use of Adobe Lightroom to look after your photos.",
+	    "tags": ["Photo Week","training","digital","lightroom"],
+	    "location": "52.380923,-1.562961|S0.28",
+	    "timestamp": 1297188000,
+	    "endtime": 1297191600
+	},
+	{
+	    "title": "Comment & Critique",
+	    "description": "This fortnight's C&C has the theme Black & White. Send your photos to [{\"su296@warwicksu.com\"|escape:\"hexentity\"}](mailto:{\"su296@warwicksu.com\"|escape:\"hex\"}). You could win a coveted chocolate camera!",
+	    "tags": ["Photo Week","competition","Comment and Critique"],
+	    "location": "52.3787,-1.560950|S0.18",
+	    "timestamp": 1297099800,
+	    "endtime": 1297105200
+	},
+	{
+	    "title": "Scavenger Hunt",
+	    "description": "With fruit and confectionery prizes for such categories as \"Most items in one photo\" and \"Worst abuse of the rules\", Scavenger Hunts always turn running around campus with a camera a lark, weather permitting[^1].\n[^1]: Or else we'll end up in the Duck",
+	    "location": "52.37911,-1.560938|The Piazza",
+	    "tags": ["Photo Week","scavenger hunt","Campus"],
+	    "timestamp": 1296993600,
+	    "endtime": 1297004400
+	},
+	{
+	    "title": "Places in Europe",
+	    "description": "Kicking off Photo Week is our Exhibition and Competition, in collaboration with [One World Week](http://oneworldweek.net).",
+	    "location": "52.378785, -1.560576|SU Atrium",
+	    "tags": ["Photo Week","competition","exhibition","atrium"],
+	    "timestamp": 1296813600,
+	    "endtime": 1296824400
+	},
+        {
+            "title": "Duke Social",
+            "description": "Week 3 we descend upon The Duke in Leamington. Meet at 7:30pm at the Arts Centre bus stop or 8pm at the bar itself.",
+            "location": "52.291863,-1.537646|The Duke",
+            "tags": [
+                "social",
+                "Duke",
+                "Leamington"
+            ],
+            "timestamp": 1287513000,
+            "endtime": 1287529200
+        },
+        {
+            "title": "Scavenger Hunt",
+            "description": "In teams of three or four you'll be running around campus finding our list of 20 or so unusual things to photograph. Previously we've had \"a refreshing drink\", \"up a tree\" and \"chair\". One team even combined those three into a sigle photo.",
+            "location": "52.37911,-1.560938|The Piazza",
+            "tags": [
+                "scavenger hunt",
+                "Campus"
+            ],
+            "user": "matt",
+            "timestamp": 1287234000,
+            "endtime": 1287241200
+        },
+        {
+            "title": "Campus Walkabout",
+            "description": "This Thursday we'll be walking around campus in a photographic manner. Bring a camera and a pair of legs and meet us on the Piazza. We'll probably end up in the pub afterwards.",
+            "location": "52.37911,-1.560938|The Piazza",
+            "tags": [
+                "walkabout",
+                "Campus"
+            ],
+            "user": "matt",
+            "timestamp": 1287068400,
+            "endtime": 1287075600
+        },
+        {
+            "title": "Coffee Meet-Up",
+            "description": "Meet us at Rootes Social to have a coffee and chat about this and that.",
+            "location": "52.3789,-1.5602|Rootes Social",
+            "tags": [
+                "coffee",
+                "Rootes Social"
+            ],
+            "user": "matt",
+            "timestamp": 1263574800,
+            "endtime": 1263578400
+        },
+        {
+            "title": "Duke Social",
+            "description": "Our Week 2 Social takes place in The Duke in Leamington, a fairly new pub near the top of the Parade.",
+            "location": "52.291863,-1.537646|The Duke",
+            "tags": [
+                "social",
+                "Duke",
+                "Leamington"
+            ],
+            "timestamp": 1264102200,
+            "endtime": 1264118400
+        },
+        {
+            "title": "London Protest",
+            "description": "This Saturday there is a protest in London that strikes a chord with many of our members. The [I'm a Photographer, Not a Terrorist](http:\/\/photographernotaterrorist.org\/) group campaign against the use of anti-terror legislation on legitimate photographers and have organised a mass photo meetup in Trafalgar Square. We will be getting the train from Leamington in the morning, checking out the protest, having a pub lunch and then going to a photography exhibition and having a bit of a wander in the afternoon. We will not be going to all the tourist spots but London is an awesome place for photography without going to them. Protests are always really good fun, even if you don't care much for the cause; not to mention it's an awesome place for photography and is a chance to meet photographers from all over the UK.",
+            "location": "51.507993,-0.128089|Trafalgar Square",
+            "tags": [
+                "protest",
+                "London",
+                "Trafalgar Square",
+                "phnat"
+            ],
+            "timestamp": 1264248000,
+            "endtime": 1264251600
+        },
+        {
+            "title": "Browns Social",
+            "description": "Join us in Week 3 for a social at Browns Bar in Coventry. Browns is a family-owned bar with a wide selection of food and ales.",
+            "location": "52.40704,-1.506994|Browns",
+            "tags": [
+                "social",
+                "Browns",
+                "Coventry"
+            ],
+            "timestamp": 1264705200,
+            "endtime": 1264723200
+        },
+        {
+            "title": "Training: Landscapes",
+            "description": "Our Equipment Manager, Greg, is going to be giving a session on improving your landscape photography, covering concepts like graduated and polarising filters, and showing how these have been used in some of your favourite landscape shots.",
+            "location": "52.382505,-1.563406|Physics Lecture Theatre",
+            "tags": [
+                "training",
+                "landscape",
+                "Greg"
+            ],
+            "timestamp": 1264096800,
+            "endtime": 1264100400
+        },
+        {
+            "title": "Training: Great Photos With Cheap Cameras",
+            "description": "Rounding off [Photo Fortnight]({$dots}society\/events?tag=Photo+Fortnight), our Social Sec, Pete, will be giving a training session on compact cameras. The session will cover the different shooting modes and when to use them, as well as how to get the best out of your compact camera.",
+            "location": "52.382505,-1.563406|Physics Lecture Theatre",
+            "tags": [
+                "training",
+                "compact",
+                "Photo Fortnight",
+                "Pete"
+            ],
+            "timestamp": 1265911200,
+            "endtime": 1265914800
+        },
+        {
+            "title": "Training: Introduction to Photography",
+            "description": "In the first of our [Photo Fortnight]({$dots}society\/events?tag=Photo+Fortnight) training sessions our Training Coordinator, Alex, will be giving an Introduction to Photography session. This will be aimed at newer members in the society, and cover the concepts of aperture and exposure, as well as how to improve your composition.",
+            "location": "52.382505,-1.563406|Physics Lecture Theatre",
+            "tags": [
+                "training",
+                "introduction",
+                "Photo Fortnight",
+                "Alex"
+            ],
+            "timestamp": 1265306400,
+            "endtime": 1265310000
+        },
+        {
+            "title": "Kenilworth Walkabout",
+            "timestamp": "1265463000",
+            "endtime": "",
+            "location": "52.343567,-1.580226|Kenilworth Clock Tower",
+            "tags": [
+                "Kenilworth",
+                "walkabout",
+                "Photo Fortnight"
+            ],
+            "description": "Meet us at 1:30pm[^1] by the clock tower in Kenilworth, where we'll be setting off on one of our \"walkabouts\"[^2]. We'll be having a stroll around the town, taking in some of its more picturesque areas. Don't forget your camera.\n\n[^1]: 1 o'clock from campus or Leamington.\n[^2]: If you are late and want to find us call Pete Shrimpton, our Social Secretary, on {\"07791291720\"|escape:\"hexentity\"}."
+        },
+        {
+            "title": "Coffee Evening",
+            "timestamp": "1265392800",
+            "endtime": "1265396400",
+            "location": "52.378353,-1.561266|Rootes Social",
+            "tags": [
+                "Rootes Social",
+                "coffee",
+                "Photo Fortnight"
+            ],
+            "user":"matt",
+            "description": "Every other Friday, PhotoSoc meets up in Rootes Social Bar for a coffee and a chat. Why not join us?"
+        },
+        {
+            "title": "Comment & Critique",
+            "timestamp": 1265216400,
+            "endtime": 1265220000,
+            "location": "52.381995,-1.5631|L4",
+            "tags": [
+                "Comment & Critique",
+                "competition",
+                "Photo Fortnight",
+                "L4",
+                "University Life"
+            ],
+            "description": "The theme for this week's Comment and Critique is \"University Life\". Email your submissions to [{\"su296@warwicksu.com\"|escape:\"hexentity\"}](mailto:{\"su296@warwicksu.com\"|escape:\"hex\"}), and you could win a print of your picture!"
+        },
+        {
+            "title": "Campus Walkabout",
+            "description": "Join us for a walk around campus talking photos, starting at the Piazza at 6. It's a great opportunity to meet new people in the Society and take a crapload of photos.",
+            "location": "52.379029,-1.56092|Piazza",
+            "tags": [
+                "walkabout",
+                "Photo Fortnight",
+                "Piazza",
+                "campus"
+            ],
+            "timestamp": 1265047200,
+            "endtime": 1265054400
+        },
+        {
+            "title": "Spoons Social",
+            "description": "Tuesday we're heading to the Wetherspoons in Leamington. We'll be there at half seven; if you're getting the bus from campus it'll obviously have to be earlier.",
+            "location": "52.289855,-1.535967|Wetherspoons",
+            "tags": [
+                "Spoons",
+                "Leamington",
+                "Photo Fortnight"
+            ],
+            "timestamp": 1265139000,
+            "endtime": 1265155200
+        },
+        {
+            "title": "Top B",
+            "description": "This is not just monkey business. This is photographic monkey business. Look out for the <s>red<\/s> [green]({$dots}home\/news?id=1) hoodies.",
+            "location": "52.378856,-1.560772|Terrace Bar",
+            "timestamp": 1265659200,
+            "endtime": 1265677200,
+            "tags": [
+                "Photo Fortnight",
+                "Top B",
+                "SU",
+                "Union"
+            ]
+        },
+        {
+            "title": "Talk: Photographers and the Law",
+            "description": "Our resident Law student, secretary Sam, will be giving a talk on where photograhers stand with regards to anti-terrorism law, including what police are and aren't allowed to do in a stop-and-search and your rights under &sect;44 of the Terrorism Act. This event's sure to be busy, so pitch up early.",
+            "location": "52.381945,-1.563138|L4",
+            "timestamp": 1265738400,
+            "endtime": 1265742000,
+            "tags": [
+                "Photo Fortnight",
+                "law",
+                "terrorism",
+                "L4",
+                "phnat"
+            ]
+        },
+        {
+            "title": "Comment & Critique: Trip",
+            "description": "The theme for our Comment & Critique session in Week 7 is &quot;Trip&quot;. Email submissions to {'su296@warwicksu.com'|escape:'hexentity'}",
+            "location": "52.380817,-1.562682|S0.19",
+            "timestamp": "1267030800",
+            "endtime": "1267034400",
+            "tags": [
+                "Comment & Critique",
+                "competition",
+                "S0.19"
+            ]
+        },
+        {
+            "title": "PhotoVarsity",
+            "description": "In a break from PhotoSoc's Dirty Duck traditions, we're heading to Varsity, just outside of campus (down Gibbet Hill Road), for photo nonsense and good times.",
+            "location": "52.39,-1.57|Varsity",
+            "timestamp": 1267034400,
+            "endtime": 1267048000,
+            "tags": [
+                "Social",
+                "pub",
+                "Varsity"
+            ]
+        },
+        {
+            "title": "Training: Studio Gear",
+            "description": "Come along to Lib 1, where we'll be larking about with the studio gear. It's a great chance to learn how to use it and get acquainted with studio and protrait photography.",
+            "location": "52.381652,-1.562092|Lib 1",
+            "timestamp": 1267122600,
+            "endtime": 1267126200,
+            "tags": [
+                "Training",
+                "Studio",
+                "Lib 1"
+            ]
+        }
+    ],
+    "news": [
+	        {
+            "title": "New Website",
+            "content": "Since the elections in November, your new webmaster Matt has been slaving away <s>over a hot stove<\/s> to get a new website to you. It's been an arduous journey, taking place in fits and starts and mostly by night. And we've finally made it.\n\nLike the first land creatures, stepping unsteadily to shore, taking those first few uncertain breaths, blinking in the sunlight, there's going to be a few teething troubles. If you notice anything very obviously broken, misplaced or downright wrong, drop me a line [here](mailto:{\"mattyb1000+photosoc@gmail.com\"|escape:\"hex\"}) or via the [Facebook group](http:\/\/www.facebook.com\/group.php?gid=2203083617).\n\nAnd if the cat asks you for rupees when the crescent moon faces upwards, please oblige him.",
+            "timestamp": 1263200400,
+            "tags": [
+                "website",
+                "featured"
+            ]
+        },
+        {
+            "title": "Hoodies!",
+            "content": "The hoodies have finally arrived! If you want to collect your very own, brand new, swanky green PhotoSoc hoodie, pop into the Darkroom or give Sam a bell.",
+            "timestamp": 1265630400,
+            "tags": [
+                "hoodies"
+            ]
+        },
+        {
+            "title": "Election Results",
+            "content": "First of all, I'd like to extend a massive &quot;thanks&quot; to all who came along to the elections on Friday, especially to those who stepped up and filled empty positions. Without you, PhotoSoc wouldn&apos;t be where it is today. As for where PhotoSoc will be tomorrow, meet the new exec:\n\n<div markdown=\"1\" class=\"exec\">#**President & Webmaster** Matt Brennan\n\n#**Secretary & Competitions** Jo Yeomans  \n\n#**Treasurer** Jeff Clark\n\n#**Social Secretary** Jamie Clay\n\n#**Darkroom Manager** Lauren Stone\n\n#**Equipment Manager** Josh Veitch-Michaelis\n\n#**Training Coordinator** Phil Taylor<\/div>If you want to know more about or new Exec members, mosey on over to the [exec page]({$dots}society\/exec), where you'll find short bios and Flickr links.\n\nIf you have any queries, requests or comments, please don't hesitate to get in touch at [{\"su296@warwicksu.com\"|escape:'hexentity'}](mailto:{\"su296@warwicksu.com\"|escape:'hex'}).",
+            "timestamp": 1266314400,
+            "tags": [
+                "exec",
+                "elections",
+                "featured"
+            ]
+        },
+        {
+        	"title": "Summer Tour: Berlin",
+        	"content": "It's tour time, people!\n\nAs I'm sure you're already aware, this July PhotoSoc is traveling to Berlin for a week of photographic nonsense, from the 2<sup>nd</sup> to the 9<sup>th</sup>. We'll be staying in the [Generator Hostel](http://www.generatorhostels.com/en/berlin), and I'm sure you'll appreciate the included breakfast.\n\nThe price for the week will be £230, which includes transport, accommodation and breakfast for the week. We will be catching the [Megabus](http://megabus.com) down to London Victoria then the National express train to Stansted, where we'll stay the night until our 6am departure[^1]. On the way back, we're only going as far as London Victoria, as not many of you will be returning to campus.\n\nThe deadline for payments is Monday Week 3 (10/5/10); you can pay online through the [SU Website](http://www.warwicksu.com/shop/product/10052180/).\n\nWe look forward to seeing you guys there. Any questions or queries can be directed towards [{\"su296@warwicksu.com\"|escape:'hexentity'}](mailto:{\"su296@warwicksu.com\"|escape:'hex'}) or the comment section below.\n[^1]: Bring stuff to do!",
+        	"timestamp": 1272812789,
+        	"tags": [
+        		"tour",
+        		"berlin",
+        		"featured"
+        	]
+        },
+        {
+            "title": "Winter Tour: Edinburgh",
+            "content": "Haggis, kilts, bagpipes and photographs for this year's winter tour to Edinburgh. The trip is from the 10<sup>th</sup> to the 13<sup>th</sup> of December[^1] and will cost £95; payment can be made at the [Warwick SU website](http://www.warwicksu.com/Shop/Product/10054590/) before Monday Week 6[^2].\n\nEdinburgh has tons of history, and even more culture; plenty of opportunities to snap. I'm sure we'll fit in some great pubs and Christmas markets too!\n[^1]:The weekend after the end of term\n\n[^2]:November 8<sup>th</sup>",
+            "timestamp": 1288526400,
+            "tags": [
+                "tour",
+                "edinburgh",
+                "featured"
+            ]
+        },
+{
+		"title": "Election aftermath",
+		"content": "It is a time of peaceful revolution. The old regime has acknowledged its shortcomings, and the way to democracy is being paved. The tyrant Brennan is no more, succeeded by young Jeff Clark. His Executive take office over the next week; a [dossier]({$dots}society\/exec) on its members is being prepared.\n\n¡Viva la revolución!\n\n¡Viva la Sociedad Fotográfica!",
+		"timestamp": 1298086433,
+		"tags":["elections","featured"]
+	}
+
+    ],
+    "links": [
+        {
+            "title": "PhotoSoc Flickr Group",
+            "url": "http:\/\/www.flickr.com\/groups\/warwickphotosoc\/",
+            "tags": [
+                
+            ],
+            "description": "PhotoSoc's Flickr group. If you have a Flickr account, why not join and post your Warwick pics to the group pool?"
+        },
+        {
+            "title": "DIY Photography",
+            "url": "http:\/\/diyphotography.net\/",
+            "tags": [
+                
+            ],
+            "description": "Homemade photographic awesomeness, with articles on how to improve your photography using whatever's lying around."
+        },
+        {
+            "title": "Ken Rockwell",
+            "url": "http:\/\/kenrockwell.com\/",
+            "tags": [
+                
+            ],
+            "description": "Camera reviews website. Ken covers most SLRs and lenses as well as many bridge and compact cameras."
+        },
+        {
+            "title": "I'm a Photographer, Not a Terrorist",
+            "url": "http:\/\/photographernotaterrorist.org\/",
+            "tags": [
+                
+            ],
+            "description": "More and more shopping centres, office buildings and other public places are becoming hostile to photography, under the banner of Anti-Terrorism. Speak out for freedom."
+        },
+        {
+            "title": "7 Day Shop",
+            "url": "http:\/\/www.7dayshop.com\/catalog\/default.php?cPath=777_1",
+            "description": "Great for cheap film and camera accessories.",
+            "tags": [
+                "film"
+            ]
+        },
+        {
+            "title": "Silver Print",
+            "url": "http:\/\/www.silverprint.co.uk\/1",
+            "description": "Good for chemicals and paper.",
+            "tags": [
+                "film"
+            ]
+        },
+        {
+            "title": "RK Photographic",
+            "url": "http:\/\/www.thedarkroom.co.uk\/",
+            "description": "Chemicals and Ilford Photographic Paper.",
+            "tags": [
+                "film"
+            ]
+        }
+    ],
+    "gear": [
+        {
+            "title": "Canon EOS 400D",
+            "type": 0,
+            "image": "images\/gear\/Canon_EOS_400D.png",
+            "description": "Mid-range 10 megapixel digital SLR, featuring 9-point autofocus and a 2.5\" screen. This camera is compatible with all the Society's Canon-mount lenses.",
+            "number": {
+                "a": 3
+            },
+            "out": [
+                
+            ]
+        },
+        {
+            "title": "Nikon D50",
+            "type": 0,
+            "image": "images\/gear\/Nikon_D50.png",
+            "description": "Entry-level 6.1 megapixel digital SLR. Easy to use for beginning photographers. This camera is compatible with all the Society's Nikon-mount lenses.",
+            "number": {
+                "a": 1
+            },
+            "out": [
+                
+            ]
+        },
+        {
+            "title": "Fuji FinePix S9600",
+            "type": 0,
+            "image": "images\/gear\/Fuji_Finepix_S9600.png",
+            "description": "9 megapixel bridge camera, providing manual image controls and a 9 megapixel sensor. This camera is simpler and easier to use than an SLR but provides more control than a compact. Does not feature interchangeable lenses.",
+            "number": {
+                "a": 1
+            },
+            "out": [
+                
+            ]
+        },
+        {
+            "title": "Canon EOS 500N",
+            "type": 1,
+            "image": "images\/gear\/Canon_EOS_500N.png",
+            "description": "A great introduction to film photography, this camera is compatible with many of our Canon-mount lenses.",
+            "number": {
+                "a": 1
+            },
+            "out": [
+                
+            ]
+        },
+        {
+            "title": "Nikon F55",
+            "type": 1,
+            "image": "images\/gear\/Nikon_F55.png",
+            "description": "A great introduction to film photography, this camera is compatible with many of our Nikon-mount lenses.",
+            "number": {
+                "a": 1
+            },
+            "out": [
+                
+            ]
+        },
+        {
+            "title": "Canon EF-S 18-55mm",
+            "type": 2,
+            "out": [
+                
+            ],
+            "image": "images\/gear\/Canon_18-55.png",
+            "description": "The lens that comes with a 400D. It has a large zoom range and is suitable for most types of everyday photography.",
+            "number": {
+                "c": 2,
+                "n": 0
+            }
+        },
+        {
+            "title": "Canon EF 50mm f\/1.8",
+            "type": 2,
+            "out": [
+                
+            ],
+            "image": "images\/gear\/Canon_50.png",
+            "description": "Fixed focal length lens with a large maximum aperture, making it ideal for indoor or night photography.",
+            "number": {
+                "c": 3,
+                "n": 0
+            }
+        },
+        {
+            "title": "Sigma EX 18-50mm f\/2.8",
+            "type": 2,
+            "out": [
+                
+            ],
+            "image": "images\/gear\/Sigma_18-50.png",
+            "description": "Zoom lens with a similar range to kit lenses and a large maximum aperture. Ideal for gigs and events.",
+            "number": {
+                "c": 1,
+                "n": 1
+            }
+        },
+        {
+            "title": "Tamron 90mm f\/2.8",
+            "type": 2,
+            "out": [
+                
+            ],
+            "image": "images\/gear\/Tamron_90.png",
+            "description": "Fixed focal length macro lens with a large maximum aperture. Useful for portraits or studio work.",
+            "number": {
+                "c": 1,
+                "n": 0
+            }
+        },
+        {
+            "title": "Sigma 10-20mm",
+            "type": 2,
+            "out": [
+                
+            ],
+            "image": "images\/gear\/Sigma_10-20.png",
+            "description": "Wide-angle zoom lens. Ideal for shooting landscape photography or just messing about with perspective",
+            "number": {
+                "c": 1,
+                "n": 0
+            }
+        },
+        {
+            "title": "Sigma 30mm f\/1.4",
+            "type": 2,
+            "out": [
+                
+            ],
+            "image": "images\/gear\/Sigma_30.png",
+            "description": "Fixed focal length normal lens, with a huge maximum aperture. Perfect indoor or at night.",
+            "number": {
+                "c": 1,
+                "n": 0
+            }
+        },
+        {
+            "title": "Sigma 70-300mm",
+            "type": 2,
+            "out": [
+                
+            ],
+            "image": "images\/gear\/Sigma_70-300.png",
+            "description": "Telephoto zoom lens, with some macro options. Great for shooting sports.",
+            "number": {
+                "c": 1,
+                "n": 1
+            }
+        },
+        {
+            "title": "Nikon 18-55mm",
+            "type": 2,
+            "out": [
+                
+            ],
+            "image": "images\/gear\/Nikon_18-55.png",
+            "description": "The lens that comes with a D50. It has a large zoom range and is suitable for most everyday photography.",
+            "number": {
+                "c": 0,
+                "n": 1
+            }
+        },
+        {
+            "title": "Nikon 50mm f\/1.8",
+            "type": 2,
+            "out": [
+                
+            ],
+            "image": "images\/gear\/Nikon_50.png",
+            "description": "Fixed focal length lens with a large maximum aperture, making it ideal for indoor or night photography. Note: does not autofocus on newer entry-level and mid-range Nikons.",
+            "number": {
+                "c": 0,
+                "n": 1
+            }
+        },
+        {
+            "title": "Canon 430EX",
+            "type": 3,
+            "image": "images\/gear\/Canon_430EX.png",
+            "description": "Canon-fit flashgun. Useful in low light.",
+            "number": {
+                "a": 1
+            }
+        },
+        {
+            "title": "Nikon SB-600",
+            "type": 3,
+            "image": "images\/gear\/Nikon_SB-600.png",
+            "description": "Nikon-fit flashgun. Useful in low light.",
+            "number": {
+                "a": 1
+            }
+        },
+        {
+            "title": "Pocket Wizard",
+            "type": 3,
+            "image": "images\/gear\/Pocket_Wizard.png",
+            "description": "Used to remotely trigger a flash, to provide more options for lighting. Can also trigger a Canon EOS 400D.",
+            "number": {
+                "a": 3
+            }
+        },
+        {
+            "title": "Phoenix x0.25 Fisheye",
+            "type": 3,
+            "image": "images\/gear\/Phoenix_Fisheye.png",
+            "description": "Screws onto lenses and converts to fisheye. Adaptors available for most lenses.",
+            "number": {
+                "a": 1
+            }
+        }
+    ],
+    "exec": [
+        {
+            "name": "Jeff Clark",
+            "position": [
+                "President"
+            ],
+            "link": "",
+            "caption": "",
+            "bio": ""
+        },
+        {
+            "name": "Matt Smith",
+            "position": [
+                "Secretary"
+            ],
+            "bio": ""
+        },
+        {
+            "name": "Neli Staneva",
+            "position": [
+                "Treasurer"
+            ],
+            "bio": ""
+        },
+        {
+            "name": "Mark Callaghan",
+            "position": [
+                "Social Secretary"
+            ],
+            "caption": "",
+            "bio": ""
+        },
+        {
+            "name": "Constantin Postica",
+            "position": [
+                "Darkroom"
+            ],
+            "bio": ""
+        },
+        {
+            "name": "Martin Rolph",
+            "position": [
+                "Equipment"
+            ],
+            "bio": ""
+        },
+         {
+            "name": "Josh Veitch-Michaelis",
+            "position": [
+                "Training"
+            ],
+            "bio": ""
+        },
+
+       {
+            "name": "Matt Brennan",
+            "position": [
+                "Publicity"
+            ],
+            "bio": ""
+       } 
+
+    ]
 }
+

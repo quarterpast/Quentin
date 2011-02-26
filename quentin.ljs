@@ -126,4 +126,23 @@ Quentin = {
 		};
 	}	
 };
+Quentin.template.load = function(f,p) {
+	try {
+		let c = read(f),o;
+		evalcx(c,o);
+		return Quentin.template(o.template,p);
+	} catch(e) {
+		throw e;
+	}
+};
+Quentin.go.load = function(f,p) {
+	try {
+		let c = read(f),o;
+		evalcx(c,o);
+		Quentin.pages = o.template;
+		return Quentin.go(p);
+	} catch(e) {
+		throw e;
+	}
+};
 

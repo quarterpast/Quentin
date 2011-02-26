@@ -82,14 +82,11 @@ $ = {
 	k: function(a) a
 },
 Quentin = {
-	options: {
-		"template": "templates.js"
-	},
 	error: {
 		
 	},
 	go: function(p) {
-		var args, r, o = Quentin.template;
+		var args, r, o = Quentin.pages;
 		print("Content-type: text/html\n");
 		for each(let [i,a] in Iterator(p)) {
 			if(Object.isUndefined(o[a])) {
@@ -101,7 +98,7 @@ Quentin = {
 		}
 		if(typeof o === 'function') {
 			r = Quentin.template(o,args);
-		} else if(p[0] in Quentin._template && typeof o['index'] === 'function') {
+		} else if(p[0] in Quentin.pages && typeof o['index'] === 'function') {
 			r = Quentin.template(o['index'],args);
 		} else {
 			throw new Error('page not found');

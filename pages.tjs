@@ -1,0 +1,6 @@
+this.template = {
+	"index": i = function() "Welcome to Warwick PhotoSoc!",
+	"home": {
+		"index": function() i().toUpperCase(),
+	}
+};

@@ -1,0 +1,15 @@
+this.template = function(data) <html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Warwick PhotoSoc &rsaquo; {this.path.join(" &rsaquo ")}</title>
+ </head>
+ <body class={this.path.join(" ")}>
+  <header class="main">
+   <h1>Warwick PhotoSoc</h1>
+	</header>
+	<section class="content">
+		{data.content}
+	</section>
+	</body>
+</html>
+

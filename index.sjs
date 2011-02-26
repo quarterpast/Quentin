@@ -1,4 +1,4 @@
-#!home/photosoc/bin/js
+#!/home/photosoc/bin/js
 load("quentin.ljs");
 var p = Quentin.env.path || ["home];
 Quentin.options.template = {

@@ -89,6 +89,7 @@ Quentin = {
 	},
 	init: function() {
 		var t = Quentin.options.template, c, o;
+		print("Content-type: text/html\n");
 		if(Object.isString(t)) {
 			try {
 				c = read(t);

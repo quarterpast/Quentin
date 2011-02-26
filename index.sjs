@@ -1,6 +1,5 @@
 #!home/photosoc/bin/js
-load("quentin.js");
-print("Content-type: text-html")
+load("quentin.ljs");
 var p = environment.PATH_INFO.split('/').filter(function(a) a);
 Quentin.options.template = {
 	"home": {

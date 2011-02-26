@@ -129,9 +129,9 @@ Quentin = {
 Quentin.template.load = function(f,p) {
 	try {
 		let c = read(f),o={};
-		with(o) {
+		(function() {
 			eval(c);
-		}
+		}).apply(o);
 		return Quentin.template(o.template,p);
 	} catch(e) {
 		throw e;
@@ -140,9 +140,9 @@ Quentin.template.load = function(f,p) {
 Quentin.go.load = function(f,p) {
 	try {
 		let c = read(f),o={};
-		with(o) {
+		(function() {
 			eval(c);
-		}
+		}).apply(o);
 		Quentin.pages = o.template;
 		return Quentin.go(p);
 	} catch(e) {

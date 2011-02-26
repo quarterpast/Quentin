@@ -5,5 +5,5 @@ template = Quentin.template.load("template.tjs"),
 page = Quentin.go.load("pages.tjs",p);
 
 template.print({
-	"content": page
+	"content": page.out(JSON.load('data.json'))
 });

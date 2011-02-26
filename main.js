@@ -85,7 +85,6 @@ Quentin = {
 		
 	},
 	init: function(p) {
-		o && Quentin.options.extend(o);
 		var t = Quentin.options.template, c, o;
 		if(Object.isString(t)) {
 			try {
@@ -94,6 +93,12 @@ Quentin = {
 				Quentin.go(p, o.template || error);
 			} catch(e) {
 				throw e;
+			}
+		} else {
+			try {
+				Quentin.go(p,Quentin.options.template);
+			} catch(e) {
+				
 			}
 		}
 	},
@@ -108,22 +113,23 @@ Quentin = {
 			}
 		});
 		if(typeof o === 'function') {
-			r = Quentin.template(
+			r = Quentin.template(o,args);
 		} else if(typeof f['index'] === 'function') {
-			o=f['index'].apply(null,args);
+			r = Quentin.template(o['index'],args);
 		} else {
-			o=c;
+			throw new Error();
 		}
+		return r;
+	},
+	env = {
+		options: Quentin.options,
+		now: function() new Date(),
+		get: environment.QUERY_STRING && environment.QUERY_STRING.parseQuery(),
+		post: {},//TODO: find out where/if I can get this
+		server: environment
 	},
 	template: function(m,path) {
-		var env = {
-			options: Quentin.options,
-			now: function() new Date(),
-			get: environment.QUERY_STRING && environment.QUERY_STRING.parseQuery(),
-			post: {},//TODO: find out where/if I can get this
-			server: environment
-		},
-		out = function(d) {
+		var out = function(d) {
 			return m.apply(env,[d,path]);
 		},
 		p = function(d) {

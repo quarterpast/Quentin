@@ -1,6 +1,6 @@
 this.template = function(data) <html lang="en">
  <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8"/>
   <title>Warwick PhotoSoc &rsaquo; {this.path.join(" &rsaquo ")}</title>
  </head>
  <body class={this.path.join(" ")}>

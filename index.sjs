@@ -1,6 +1,6 @@
 #!/home/photosoc/bin/js
 load("quentin.ljs");
-var p = environment.PATH_INFO.split('/').filter(function(a) a);
+var p = "PATH_INFO" in environment ? environment.PATH_INFO.split('/').filter(function(a) a) : ["index"];
 Quentin.options.template = {
 	"home": {
 		"index": i = function() "Welcome to Warwick PhotoSoc!",

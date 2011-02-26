@@ -1,4 +1,4 @@
-Object.extend = function(d,s) {
+bject.extend = function(d,s) {
 	for(var k in s) {
 		d[k] = s[k];
 	}
@@ -78,7 +78,8 @@ $ = {
 			return $else(cond);
 		}
 		return '';
-	}
+	},
+	k: function(a) a
 },
 Quentin = {
 	options: {
@@ -129,6 +130,7 @@ Quentin = {
 		now: function() new Date(),
 		get: environment.QUERY_STRING && environment.QUERY_STRING.parseQuery(),
 		post: {},//TODO: find out where/if I can get this
+		path: "PATH_INFO" in environment && environment.PATH_INFO.split('/').filter($.k),
 		server: environment
 	},
 	template: function(m,path) {

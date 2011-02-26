@@ -1,0 +1,10 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ index.sjs/$1 [QSA,L]
+</IfModule>
+Options +ExecCGI
+AddHandler cgi-script .sjs
+DirectoryIndex index.sjs
+

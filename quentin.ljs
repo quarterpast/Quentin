@@ -110,7 +110,7 @@ Quentin = {
 		now: function() new Date(),
 		get: environment.QUERY_STRING && environment.QUERY_STRING.parseQuery(),
 		post: {},//TODO: find out where/if I can get this
-		path: "PATH_INFO" in environment && environment.PATH_INFO.split('/').filter($.k),
+		path: "PATH_INFO" in environment ? environment.PATH_INFO.split('/').filter($.k) : [],
 		server: environment
 	},
 	template: function(m,path) {

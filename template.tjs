@@ -1,7 +1,7 @@
 this.template = function(data) <html lang="en">
  <head>
   <meta charset="UTF-8"/>
-  <title>Warwick PhotoSoc &rsaquo; {this.path.join(" &rsaquo ")}</title>
+  <title>Warwick PhotoSoc &amp;rsaquo; {this.path.join(" &amp;rsaquo ")}</title>
  </head>
  <body class={this.path.join(" ")}>
   <header class="main">

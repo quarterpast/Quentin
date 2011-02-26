@@ -1,3 +1,4 @@
+String.prototype.toXMLString = String.prototype.toString;
 Object.extend = function(d,s) {
 	for(var k in s) {
 		d[k] = s[k];

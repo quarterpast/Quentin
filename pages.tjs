@@ -2,5 +2,8 @@ this.template = {
 	"index": i = function() "Welcome to Warwick PhotoSoc!",
 	"home": {
 		"index": function() i().toUpperCase(),
+		"news": function(data, path) {
+			return <pre>{JSON.stringify(this.server," ")}</pre>;
+		}
 	}
 };

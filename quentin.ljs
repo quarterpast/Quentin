@@ -72,7 +72,7 @@ $ = {
 		}
 		return ret;
 	},
-	_if: function(cond, h, _else) {
+	_if: function(cond, h, $else) {
 		if (cond && cond != undefined) {
 			return h(cond);
 		}	else if ($else) {
@@ -102,15 +102,15 @@ Quentin = {
 		} else if(p[0] in Quentin.pages && typeof o['index'] === 'function') {
 			r = Quentin.template(o['index'],args);
 		} else {
-			throw new Error('page not found');
+		throw new Error('page not found');
 		}
-		return r;
+		return [r, p.slice(0,i)];
 	},
 	env: {
 		now: function() new Date(),
 		get: environment.QUERY_STRING && environment.QUERY_STRING.parseQuery(),
 		post: {},//TODO: find out where/if I can get this
-		path: "PATH_INFO" in environment ? environment.PATH_INFO.split('/').filter($.k) : [],
+		path: "PATH_INFO" in environment && environment.PATH_INFO.split('/').filter($.k),
 		server: environment
 	},
 	template: function(m,path) {

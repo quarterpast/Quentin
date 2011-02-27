@@ -1,9 +1,11 @@
 this.template = function(data) <html lang="en">
- <head>
-  <meta charset="UTF-8"/>
-  <title>Warwick PhotoSoc &amp;rsaquo; {this.path.join(" &amp;rsaquo ")}</title>
+<head>
+	<meta charset="UTF-8"/>
+	<link href="style.css" rel="stylesheet"/>
+  <title>Warwick PhotoSoc {$._if(data.path, function() <>&#8250; {data.path.join(" &#8250; ")}</>)}</title>
+	<base>http://warwickphotosoc.co.uk/Quentin</base>
  </head>
- <body class={this.path.join(" ")}>
+ <body class={data.path && data.path.join(" ")}>
   <header class="main">
    <h1>Warwick PhotoSoc</h1>
 	</header>

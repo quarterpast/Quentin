@@ -1,0 +1,9 @@
+this.exports = function(data) <>
+	{$.foreach(data.exec, function(exec) <article class="exec">
+		<h1><strong>{exec.position.join(' & ')}</strong> {$._if(exec.link, function() <a href={exec.link}>exec.name</a>, function() exec.name)}</h1>
+		<figure class="l w120"><img src={'images/exec/'+exec.name.toLowerCase().replace(' ','')+'.jpg'} alt={exec.name} width="120" height="120" />{$._if(exec.caption,function() exec.caption)}</figure>
+		{$._if(exec.bio, function() <>
+			<img src="images/lq.png" alt="“" align="bottom" />{exec.bio}<img src="images/rq.png" alt="”" align="top" />
+		</>)}
+	</article>)}
+</>;

@@ -1,0 +1,79 @@
+Date.properties((function(){
+	var seconds = 1000,
+	minutes = seconds*60,
+	hours = minutes*60,
+	days = hours*24,
+	weeks = days*7;
+	return {
+		seconds: seconds,
+		minutes: minutes,
+		hours: hours,
+		deys: days,
+		weeks: weeks,
+		now: Date.now.wrap(function(now) {
+			return new Date(now());
+		})
+	};
+})()).methods({
+	nextYear: function() {
+		return this.getFullYear()-Date.now().getFullYear() === 1;
+	},
+	dayOfYear: function() {
+		var s = new Date(this.getFullYear(),0,1);
+		return Math.floor((this.getTime()-s.getTime())/Date.days);
+	},
+	getSuffix: function() {
+		return this.getDate().ord();
+	},
+	isLeapYear: function() {
+		var y = this.getFullYear();
+		return (!(y%4) && !!(y%100)) || !(y%400);
+	},
+	format: function(format) {
+		var n = this, s = new Date(this.getFullYear(),0,1), f = {
+			'%': '%',
+			'a': ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][n.getDay()],
+			'A': ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][n.getDay()],
+			'b': ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][n.getMonth()],
+			'B': ['January','February','March','April','May','June','July','August','September','October','November','December'][n.getMonth()],
+			'c': '%a %d %b %Y %T %p',
+			'C': (n.getFullYear()/100).floor(),
+			'd': n.getDate().toPaddedString(2),
+			'D': '%m/%d/%y',
+			'e': n.getDate(),
+			'F': '%Y-%m-%d',
+			'h': '%b',
+			'H': n.getHours().toPaddedString(2),
+			'I': (n.getHours()%12 ? n.getHours()%12 : 12).toPaddedString(2),
+			'j': ((n-s)/86400000).ceil().toPaddedString(3),
+			'k': n.getHours(),
+			'l': (n.getHours()%12 ? n.getHours()%12 : 12),
+			'm': (n.getMonth()+1).toPaddedString(2),
+			'M': n.getMinutes().toPaddedString(2),
+			'o': n.getSuffix(),
+			'p': (n.getHours() < 12 ? 'AM' : 'PM'),
+			'P': (n.getHours() < 12 ? 'am' : 'pm'),
+			'r': '%l:%M:%S %p',
+			'R': '%H:%M',
+			's': (n.getTime()/1000).floor(),
+			'S': n.getSeconds().toPaddedString(2),
+			'T': '%H:%M:%S',
+			'u': n.getDay() || 7,
+			'U': ((((n-s)/86400000)+s.getDay()+1)/7).ceil().toPaddedString(2),
+			'V': ((((n-s)/86400000)+(s.getDay() || 7))/7).ceil().toPaddedString(2),
+			'w': n.getDay(),
+			'W': ((((n-s)/86400000)+(s.getDay() || 7))/7).ceil().toPaddedString(2),
+			'x': '%d/%m/%Y',
+			'X': '%T',
+			'y': n.getFullYear()%100,
+			'Y': n.getFullYear(),
+			'z': (n.getTimezoneOffset() < 0 ? '+' : '')+(-(5*n.getTimezoneOffset()/3)).toPaddedString(4)
+		};
+		while(format !== (format = format.interpolate(f,/(^|.|\r|\n)(\%([a-zA-Z%]))/))) {}
+		return format;
+	},
+	nextNWeeks: function(n) {
+		var now = (new Date).getTime()
+		return this.getTime() > now && this.getTime() < n*7*24*60*60*1000+now;
+	}
+});

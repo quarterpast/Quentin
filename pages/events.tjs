@@ -1,0 +1,44 @@
+this.exports = function(data,path) {
+	function ddate(a,b) {
+		
+	}
+	function h(t,e) {
+		var n = Quentin.now(),
+				nd = n.getTime()/1000,
+				td = t.toDate(),
+				ed = e.toDate();
+		if(t > nd)
+			return 'will be happening on '+td.format('%A')+(td.nextNWeeks(1) && td.format(' %d%o'))+(td.nextNWeeks(4.34821) && td.format(' %B'))+(td.nextNWeeks(52.12) && td.format(' %Y'));
+	}
+	var p = /(\d+)[\w-]*/;
+	if(p.test(path[0])) {
+		let t = p(path[0])[1], ev;
+		for each(let v in data.events) {
+			if(v.timestamp == t) {
+				ev = v;
+				break;
+			}
+		}
+		if(Object.isUndefined(ev)) throw new ContentError("event", path[0]);
+		
+		Quentin.env.path[Quentin.env.path.length-1] = {
+			toString: function() ev.title,
+			url: ev.timestamp
+		};
+		return <>
+			<h1>{ev.title} </h1>
+		</>;
+	} else {
+		let [future,past] = data.events.partition(function(e) e.timestamp > Quentin.env.now().getTime()/1000);
+		return <>
+			{$._if(future.length, function() <>
+				<h1>Forthcoming events</h1>
+				{$.foreach(future,function(v) <article><a href={'society/events/'+v.timestamp+'/'}>{v.title}</a></article>)}
+			</>)}
+			{$._if(past.length, function() <>
+				<h1>Stuff we’ve done in the past</h1>
+				{$.foreach(past,function(v) <article><a href={'society/events/'+v.timestamp+'/'}>{v.title}</a> on {v.timestamp.toDate().format('%e%o %B ‘%y')}</article>)}
+			</>)}
+		</>
+	}
+}

@@ -1,0 +1,52 @@
+Function.prototype.wrap = function(w,c) {
+	var t = this;
+	return function() {
+		var a = arguments;
+		Array.unshift(a,t);
+		return w.apply(c || this,a);
+	}
+};
+Object.extend = function(s,o) {
+	for(let [k,v] in Iterator(o)) {
+		Object.defineProperty(s,k,{value:v,configurable:true});
+	}
+	return s;
+};
+Function.prototype.methods = function(o) {
+	Object.extend(this.prototype,o);
+	return this;
+};
+Function.methods({
+	properties: function(o) {
+		Object.extend(this,o);
+		return this;
+	},
+	bind: function(c) {
+		var f = this;
+		return function() {
+			return f.apply(c,arguments);
+		};
+	},
+	wrap: function(w,c) {
+		var t = this;
+		return function() {
+			var a = arguments;
+			Array.unshift(a,t);
+			return w.apply(c,a);
+		}
+	}
+});
+Object.properties({
+	isString: function(object) {
+		return Object.prototype.toString.call(object) === '[object String]';
+	},
+	isArray: function(object) {
+		return Object.prototype.toString.call(object) === '[object Array]';
+	},
+	isFunction: function(object) {
+		return Object.prototype.toString.call(object) === '[object Function]';
+	},
+	isUndefined: function(object) {
+		return (typeof object === 'undefined');
+	}
+});

@@ -1,0 +1,273 @@
+load('showdown.ljs');
+String.prototype.markdown = function() {
+	var s = new Showdown.converter();
+	return s.makeHtml(this);
+};
+Array.prototype.partition = function(s,c) {
+	var t=[], f=[];
+	this.forEach(function(a) {
+		(s.apply(c,[a]) ? t : f).push(a);
+	});
+	return [t,f];
+};
+String.prototype.truncate = function(n,x) {
+	var words = this.split(' '), t = words.slice(0,n);
+	x = x || '…';
+	return t.join(' ')+(words.length <= n ? '' : x.toXMLString());
+};
+Object.extend = function(d,s) {
+	Object.getOwnPropertyNames(s).forEach(function(k) {
+		Object.defineProperty(d,k,Object.getOwnPropertyDescriptor(s,k));
+	});
+	return d;
+};
+Object.isString = function(object) {
+	return Object.prototype.toString.call(object) === '[object String]';
+};
+Object.isArray = function(object) {
+	return Object.prototype.toString.call(object) === '[object Array]';
+};
+Object.isFunction = function(object) {
+	return Object.prototype.toString.call(object) === '[object Function]';
+};
+Object.isUndefined = function(object) {
+	return (typeof object === 'undefined');
+};
+Function.extend = function(o,n,f) {
+	if(Object.isString(n)) {
+		Object.defineProperty(o.prototype,n,{value:f});
+	} else {
+		for each(let [k,v] in n) {
+			Function.extend(o,k,v);
+		}
+	}
+	return o;
+};
+String.prototype.times = function(l) {
+	var r = '', t  = this;
+	while(l-- > 0) {
+		r += t;
+	}
+	return r;
+};
+var Template = function(template, pattern) {
+	this.template = template.toString();
+	this.pattern = pattern || Template.Pattern;
+};
+String.interpret = function(value) {
+	return value == null ? '' : String(value);
+}
+Template.prototype.evaluate = function(object) {
+	
+	return this.template.gsub(this.pattern, function(match) {
+		if (object == null) return (match[1] + '');
+		var before = match[1] || '';
+		if (before == '\\') return match[2];
+		var ctx = object, expr = match[3],
+		pattern = /^([^.[]+|\[((?:.*?[^\\])?)\])(\.|\[|$)/;
+		match = pattern.exec(expr);
+		if (match == null) return before;
+		while (match != null) {
+			var comp = match[1].charAt(0) == '[' ? match[2].replace(/\\\\]/g, ']') : match[1];
+			ctx = ctx[comp];
+			if (null == ctx || '' == match[3]) break;
+			expr = expr.substring('[' == match[3] ? match[1].length : match[0].length);
+			match = pattern.exec(expr);
+		}
+		return before + String.interpret(ctx);
+	});
+};
+String.prototype.gsub = function(pattern, replacement) {
+	function prepareReplacement(replacement) {
+		if (Object.isFunction(replacement)) return replacement;
+		var template = new Template(replacement);
+		return function(match) { return template.evaluate(match) };
+	}
+	var result = '', source = this, match;
+	replacement = prepareReplacement(replacement);
+	if (Object.isString(pattern))
+		pattern = RegExp.escape(pattern);
+	if (!(pattern.length || pattern.source)) {
+		replacement = replacement('');
+		return replacement + source.split('').join(replacement) + replacement;
+	}
+	while (source.length > 0) {
+		if (match = source.match(pattern)) {
+			result += source.slice(0, match.index);
+			result += String.interpret(replacement(match));
+			source  = source.slice(match.index + match[0].length);
+		} else {
+			result += source, source = '';
+		}
+	}
+	return result;
+}
+String.prototype.interpolate = function(o,p) (new Template(this,p)).evaluate(o);
+Object.extend(Number.prototype,{
+	ord: function() {
+		var n = this%100, d = n%10;
+		if(d === 1 && n !== 11) {
+			return 'st';
+		} else if(d === 2 && n !== 12) {
+			return 'nd';
+		} else if(d === 3 && n !== 13) {
+			return 'rd';
+		} else {
+			return 'th';
+		}
+	},
+	floor: function() {
+		return Math.floor(this);
+	},
+	ceil: function() {
+		return Math.ceil(this);
+	},
+	toPaddedString: function(l,w,r,s) {
+		r = Object.isUndefined(r) ? 10 : r;
+		w = Object.isUndefined(w) ? '0' : w;
+		s = Object.isUndefined(s) ? false : s;
+		var ret = this.toString(r), al = l-ret.length;
+		if(al <= 0) {
+			return ret;
+		} else if(s) {
+			return ret+w.times(al);
+		} else {
+			return w.times(al)+ret;
+		}
+	}
+});
+Object.extend(Date.prototype,{
+	'getSuffix': function() {
+		return this.getDate().ord();
+	},
+	'isLeapYear': function() {
+		var y = this.getFullYear();
+		return (!(y%4) && !!(y%100)) || !(y%400);
+	},
+	'format': function(format) {
+		var n = this, s = new Date(this.getFullYear(),0,1), f = {
+			'%': '%',
+			'a': ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][n.getDay()],
+			'A': ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][n.getDay()],
+			'b': ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][n.getMonth()],
+			'B': ['January','February','March','April','May','June','July','August','September','October','November','December'][n.getMonth()],
+			'c': '%a %d %b %Y %T %p',
+			'C': (n.getFullYear()/100).floor(),
+			'd': n.getDate().toPaddedString(2),
+			'D': '%m/%d/%y',
+			'e': n.getDate(),
+			'F': '%Y-%m-%d',
+			'h': '%b',
+			'H': n.getHours().toPaddedString(2),
+			'I': (n.getHours()%12 ? n.getHours()%12 : 12).toPaddedString(2),
+			'j': ((n-s)/86400000).ceil().toPaddedString(3),
+			'k': n.getHours(),
+			'l': (n.getHours()%12 ? n.getHours()%12 : 12),
+			'm': (n.getMonth()+1).toPaddedString(2),
+			'M': n.getMinutes().toPaddedString(2),
+			'o': n.getSuffix(),
+			'p': (n.getHours() < 12 ? 'AM' : 'PM'),
+			'P': (n.getHours() < 12 ? 'am' : 'pm'),
+			'r': '%l:%M:%S %p',
+			'R': '%H:%M',
+			's': (n.getTime()/1000).floor(),
+			'S': n.getSeconds().toPaddedString(2),
+			'T': '%H:%M:%S',
+			'u': n.getDay() || 7,
+			'U': ((((n-s)/86400000)+s.getDay()+1)/7).ceil().toPaddedString(2),
+			'V': ((((n-s)/86400000)+(s.getDay() || 7))/7).ceil().toPaddedString(2),
+			'w': n.getDay(),
+			'W': ((((n-s)/86400000)+(s.getDay() || 7))/7).ceil().toPaddedString(2),
+			'x': '%d/%m/%Y',
+			'X': '%T',
+			'y': n.getFullYear()%100,
+			'Y': n.getFullYear(),
+			'z': (n.getTimezoneOffset() < 0 ? '+' : '')+(-(5*n.getTimezoneOffset()/3)).toPaddedString(4)
+		};
+		while(format !== (format = format.interpolate(f,/(^|.|\r|\n)(\%([a-zA-Z%]))/))) {}
+		return format;
+	},
+	"nextNWeeks": function(n) {
+		var now = (new Date).getTime()
+		return this.getTime() > now && this.getTime() < n*7*24*60*60*1000+now;
+	}
+});
+Function.prototype._ = function() {
+	
+}
+String.prototype.toXMLString = String.prototype.toString;
+String.prototype.toXML = function(x) {
+	x = x || 'w';
+	var w = new XML('<'+x+' xml:space="preserve">'+this+'</'+x+'>');
+	return w;
+}
+/*String.prototype.firstCap = function() {
+	return this.substr(0,1).toUpperCase()+this.substr(1);
+};*/
+Number.prototype.toDate = function() {
+	return new Date(this*1000);
+};
+Function.extend(Array,"pluck", function(p) {
+	return this.map(function(a){
+		//print(a[p]);
+		return Object.isUndefined(a[p]) ? a : a[p]
+	});
+});
+Function.extend(String,"firstCap",function() {
+	return this.substr(0,1).toUpperCase()+this.substr(1);
+});
+String.prototype.capitalise = function() {
+	return this.split(" ").invoke("firstCap").join(" ");
+};
+Array.prototype.invoke = function(c) {
+	var args = Array.slice(arguments,1);
+	return this.map(function(a) a[c].apply(a,args));
+};
+Array.prototype.without = function(w,s) {
+	if(Object.isUndefined(s)) s = true;
+	return this.filter(function(a) s ? a!==w : a!=w);
+};
+Function.prototype.bind = function(c) {
+	var f = this;
+	return function() {
+		return f.apply(c,arguments);
+	};
+}
+Function.prototype.wrap = function(w,c) {
+	var f = this;
+	return function() {
+		var args = arguments;
+		Array.unshift(args,f);
+		return w.apply(c,args);
+	}
+};
+Array.prototype.unshift = Array.prototype.unshift.wrap(function(unshift,k) {
+	var a = this;
+	unshift.call(a,k);
+	return a;
+});
+Array.prototype.rev = function() {
+	var a = this.map(function(i) i);
+	a.reverse();
+	return a;
+};
+String.prototype.parseQuery = function() {
+	var t = this.replace(/^.*?\?/,'').split('&'), r = {};
+	t.forEach(function(p) {
+		var k = p.substr(0,p.indexOf('=')).replace(/\[\]$/,''),
+		v = p.substr(p.indexOf('=')+1).replace(/\+/g,' ');
+		if(k in r) {
+			if(Object.isArray(r[k])) {
+				r[k].push(v);
+			} else {
+				r[k] = [r[k],v];
+			}
+		} else {
+			r[k] = v;
+		}
+	});
+	return r;
+};
+JSON.load = function(p) {
+	return JSON.parse(read(p));
+};

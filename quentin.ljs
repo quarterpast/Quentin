@@ -1,40 +1,28 @@
-String.prototype.toXMLString = String.prototype.toString;
-Object.extend = function(d,s) {
-	for(var k in s) {
-		d[k] = s[k];
+load('function.ljs');
+load('array.ljs');
+load('string.ljs');
+load('template.ljs');
+load('number.ljs');
+load('date.ljs');
+JSON.load = function(a) {
+	return JSON.parse(read(a));
+};
+
+var ContentError = (function init(a,b) {
+	this.type = a;
+	this.lost = b;
+}).methods({
+	toString: function() {
+		return "Could not find "+this.type+" \""+this.lost+"\".";
 	}
-	return d;
-};
-Object.isString = function(object) {
-	return Object.prototype.toString.call(object) === '[object String]';
-};
-Object.isArray = function(object) {
-	return Object.prototype.toString.call(object) === '[object Array]';
-};
-Object.isUndefined = function(object) {
-	return (typeof object === 'undefined');
-};
-String.prototype.parseQuery = function() {
-	var t = this.replace(/^.*?\?/,'').split('&'), r = {};
-	t.forEach(function(p) {
-		var k = p.substr(0,p.indexOf('=')).replace(/\[\]$/,''),
-		v = p.substr(p.indexOf('=')+1).replace(/\+/g,' ');
-		if(k in r) {
-			if(Object.isArray(r[k])) {
-				r[k].push(v);
-			} else {
-				r[k] = [r[k],v];
-			}
-		} else {
-			r[k] = v;
-		}
-	});
-	return r;
-};
-JSON.load = function(p) {
-	return JSON.parse(read(p));
-};
+}),
+PageError = function(p) {
+	Object.extend(this,new ContentError('page',p.join('/')));
+},
 $ = {
+	_: function(f) {
+		return f.apply(null,arguments);
+	},
 	foreach: function(min, max, arr, h, lev) {
 		var k, ret=<></>, it = 1;
 		lev = lev || 0;
@@ -47,6 +35,7 @@ $ = {
 		}
 		if(h.length === 1) {
 			for(k in arr) {
+				if(!arr.hasOwnProperty(k)) continue;
 				if(it < min) {
 					++it;
 					continue;
@@ -54,11 +43,12 @@ $ = {
 				if(it > max) {
 					break;
 				}
-				ret+=h(arr[k], it, lev);
+				ret+=h.apply(Quentin.env,[arr[k], it, lev]);
 				++it;
 			}
 		}	else {
 			for(k in arr) {
+				if(!arr.hasOwnProperty(k)) continue;
 				if(it < min) {
 					++it;
 					continue;
@@ -66,7 +56,7 @@ $ = {
 				if(it > max) {
 					break;
 				}
-				ret+=h(k, arr[k], it, lev);
+				ret+=h.apply(Quentin.env,[k, arr[k], it, lev]);
 				++it;
 			}
 		}
@@ -74,9 +64,9 @@ $ = {
 	},
 	_if: function(cond, h, $else) {
 		if (cond && cond != undefined) {
-			return h(cond);
+			return h.apply(Quentin.env,[cond]);
 		}	else if ($else) {
-			return $else(cond);
+			return $else.apply(Quentin.env,[cond]);
 		}
 		return '';
 	},
@@ -84,27 +74,51 @@ $ = {
 },
 Quentin = {
 	error: {
-		
+		page: function(d,path) <>
+			<img src="images/obiwan.jpg"/>
+			<h1>This is not the page you are looking for.</h1>
+			Either you followed a bad link, made a typo, or I sense a great distubance in the Force. In any case, “{path.join('/')}” doesn’t exist.
+		</>,
+		content: function(data) <>
+			<img src="images/obiwan.jpg"/>
+			<h1>This is not the {data.type} you are looking for.</h1>
+			Either you followed a bad link, made a typo, or I sense a great distubance in the Force. In any case, there is nothing at “{data.lost}”.
+		</> 
 	},
 	go: function(p) {
-		var args, r, o = Quentin.pages;
+		var args=[], r, u, o = Quentin.pages, i, a, kids = false, mine = false;
 		print("Content-type: text/html\n");
-		for each(let [i,a] in Iterator(p)) {
+		for each([i,a] in Iterator(p)) {
 			if(Object.isUndefined(o[a])) {
 				args = p.slice(i);
 				break;
 			} else {
+				u = o;
 				o = o[a];
 			}
 		}
 		if(typeof o === 'function') {
 			r = Quentin.template(o,args);
+			kids =  i && Object.keys(u);
+			mine = kids && false;
 		} else if(p[0] in Quentin.pages && typeof o['index'] === 'function') {
 			r = Quentin.template(o['index'],args);
+			kids = Object.keys(o).length && Object.keys(o);
+			mine = kids && true;
+		} else if(Object.isString(o)) {
+			r = Quentin.template.load(o,args);
+			kids = i && Object.keys(u);
+			mine = kids && false;
+		} else if(p[0] in Quentin.pages && Object.isString(o['index'])) {
+			r = Quentin.template.load(o.index,args);
+			kids = Object.keys(o).length && Object.keys(o);
+			mine = kids && true;
 		} else {
-		throw new Error('page not found');
+			throw new PageError(p);
 		}
-		return [r, p.slice(0,i)];
+		kids = kids || [];
+		return [r, p.slice(0,p.length-args.length), kids, mine];
+		
 	},
 	env: {
 		now: function() new Date(),
@@ -115,10 +129,16 @@ Quentin = {
 	},
 	template: function(m,path) {
 		var out = function(d) {
-			return m.apply(Quentin.env,[d,path]);
+			try {
+				return m.apply(Quentin.env,[d,path]);
+			} catch(e if e instanceof ContentError) {
+				var p = Quentin.template(Quentin.error.content,path);
+				return p.out(e);
+			} catch(e) {throw e};
 		},
 		p = function(d) {
-			print(out(d).toXMLString());
+			var s = out(d).toXMLString();
+			print(s);
 		};
 		return {
 			out: out,
@@ -132,7 +152,7 @@ Quentin.template.load = function(f,p) {
 		(function() {
 			eval(c);
 		}).apply(o);
-		return Quentin.template(o.template,p);
+		return Quentin.template(o.exports,p);
 	} catch(e) {
 		throw e;
 	}
@@ -143,9 +163,12 @@ Quentin.go.load = function(f,p) {
 		(function() {
 			eval(c);
 		}).apply(o);
-		Quentin.pages = o.template;
+		Quentin.pages = o.exports;
 		return Quentin.go(p);
+	} catch(e if e instanceof PageError) {
+		return [Quentin.template(Quentin.error.page,p),p,false,false];
 	} catch(e) {
+		print(e.constructor == ContentError);
 		throw e;
 	}
 };

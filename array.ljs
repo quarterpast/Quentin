@@ -1,0 +1,29 @@
+Array.methods({
+	partition: function(s,c) {
+		var t=[], f=[];
+		this.forEach(function(a) {
+			(s.apply(c,[a]) ? t : f).push(a);
+		});
+		return [t,f];
+	},
+	pluck: function(p) this.map(function(a) Object.isUndefined(a[p]) ? a : a[p]),
+	invoke: function(c) {
+		var args = Array.slice(arguments,1);
+		return this.map(function(a) a[c].apply(a,args));
+	},
+	without: function(w,s) {
+		if(Object.isUndefined(s)) s = true;
+		return this.filter(function(a) s ? a!==w : a!=w);
+	},
+	unshift: Array.prototype.unshift.wrap(function(unshift,k) {
+		var a = Array.slice(this);
+		unshift.call(a,k);
+		return a;
+	}),
+	rev: function() {
+		var a = Array.slice(this);
+		a.reverse();
+		return a;
+	}
+});
+

@@ -1,0 +1,38 @@
+Number.methods({
+	ord: function() {
+		var n = this%100, d = n%10;
+		if(d === 1 && n !== 11) {
+			return 'st';
+		} else if(d === 2 && n !== 12) {
+			return 'nd';
+		} else if(d === 3 && n !== 13) {
+			return 'rd';
+		} else {
+			return 'th';
+		}
+	},
+	floor: function() {
+		return Math.floor(this);
+	},
+	toDate: function() new Date(this*1000),
+	ceil: function() {
+		return Math.ceil(this);
+	},
+	toPaddedString: function(l,w,r,s) {
+		r = Object.isUndefined(r) ? 10 : r;
+		w = Object.isUndefined(w) ? '0' : w;
+		s = Object.isUndefined(s) ? false : s;
+		var ret = this.toString(r), al = l-ret.length;
+		if(al <= 0) {
+			return ret;
+		} else if(s) {
+			return ret+w.times(al);
+		} else {
+			return w.times(al)+ret;
+		}
+	},
+	within: function(x,of,strict) {
+		return strict ? Math.abs(this-of) < x : Math.abs(this-of) <= x;
+	}
+});
+
